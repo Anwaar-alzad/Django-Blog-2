@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tf)12u4t)b1!qt484o2ex=e!vlu(065_%74lsj5sf7ya8z7@te
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,10 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blogapp'
+    
+    'rest_framework', # new
+    'rest_framework_simplejwt.token_blacklist', # new
+    "corsheaders",  # new                           
+    "note", 
 ]
+# an
+# 1234
+
+
+CORS_ORIGIN_ALLOW_ALL = True # new
+
+# new 
+REST_FRAMEWORK = {                          
+    "DEFAULT_PERMISSION_CLASSES":
+        ["rest_framework.permissions.IsAuthenticated",],                          
+    "DEFAULT_PARSER_CLASSES":["rest_framework.parsers.JSONParser",],                    
+    }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # If you're using CORS headers
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
